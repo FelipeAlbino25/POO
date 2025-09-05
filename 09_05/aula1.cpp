@@ -1,3 +1,6 @@
+
+using namespace std;
+
 #include <iostream>
 #include <ctime>
 
@@ -11,8 +14,6 @@
  * a operação '::' nos permite 
  */
 
-using namespace std;
-
 //ex: se tirássemos o namespace std, teríamos que especificar o nome da função:
 // std:: cout << ""
 // std:: cin << ""
@@ -22,38 +23,34 @@ class Horario{
     private:int min;
     private:int seg;
 
+    public:
     Horario(int hr, int min, int seg){
-
-        if(hr>=24 || min>=60 || seg >=60){
-            cout << "Error 404, data malformed";
-            return;
-        }
-
-        this->hr = hr;
-        this->min = min;
-        this->seg = seg;
+        setHr(hr);
+        setMin(min);
+        setSeg(seg);
+        cout << "Construtor chamado";
     }
 
-    public:void showTimeMilitary(){
+    void showTimeMilitary(){
         cout << this->hr << ":"<<this->min <<":"<<this->seg;
     }
 
     public:void setHr(int hr){
-        if(hr>=24){
+        if(hr>=24 || hr<0){
             cout << "Error 400, data malformed";
             return;
         }
         this->hr = hr;
     }
     public:void setMin(int min){
-        if(min>=60){
+        if(min>=60 || min<0){
             cout<<" Error 400, data malformed";
             return;
         }
         this->min = min;
     }
     public:void setSeg(int seg){
-        if(seg>=60){
+        if(seg>=60 || seg <0){
             cout <<"Error 400, data malformed";
             return;
         }
@@ -82,7 +79,7 @@ class Task{
     private:string description;
     private:string subject;
     private:bool submited;
-    private:string comments;
+    private:string comment;
     private:double grade;
 
     public:
@@ -102,7 +99,7 @@ class Task{
             return submited;
         }
         string getComments() {
-            return comments;
+            return comment;
         }
         double getGrade() {
             return grade;
@@ -111,23 +108,23 @@ class Task{
         void setExpectedFinishDate(const struct deliveryDate& expectedFinishDate) {
             this->expectedFinishDate = expectedFinishDate;
         }
-        void setTitle(const string& t) {
-            title = t;
+        void setTitle(const string& title) {
+            this->title = title;
         }
-        void setDescription(const string& d) {
-            description = d;
+        void setDescription(const string& description) {
+            this->description = description;
         }
-        void setSubject(const string& s) {
-            subject = s;
+        void setSubject(const string& subject) {
+            this->subject = subject;
         }
-        void setSubmited(bool s) {
-            submited = s;
+        void setSubmited(bool submited) {
+            this->submited=submited;
         }
-        void comment(const string& c) {
-            comments = c;
+        void postComment(const string& comment) {
+            this->comment = comment;
         }
-        void grade(double g) {
-            grade = g;
+        void postGrade(double grade) {
+            this->grade = grade;
         }
 
 
@@ -137,8 +134,8 @@ class Task{
 
 int main(){
 
-    int x =10;
-    cout << "x = "<<x;
-    //no lugar do printf("x=%d",x)
+  
+    Horario t1(120,13,13);
+    t1.showTimeMilitary();
 
 }
