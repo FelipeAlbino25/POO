@@ -83,10 +83,20 @@ class Task{
     private:double grade;
 
     public:
-        struct deliveryDate getExpectedFinishDate() {
+        Task(struct deliveryDate expectedFinishDate, string title, string description, string subject, bool submitted, string comment, double grade){
+            this->expectedFinishDate = expectedFinishDate;
+            this->title = title;
+            this->description = description;
+            this->subject = subject;
+            this->submited = submited;
+            this->comment = comment;
+            this->grade = grade;
+        }
+
+        const struct deliveryDate getExpectedFinishDate() {
             return expectedFinishDate;
         }
-        string getTitle() {
+        const string getTitle() {
             return title;
         }
         string getDescription() {
@@ -126,6 +136,9 @@ class Task{
         void postGrade(double grade) {
             this->grade = grade;
         }
+        void toString(){
+            cout << "\n\nData: "<< this->expectedFinishDate.day<<"/"<<this->expectedFinishDate.month<<"/"<<this->expectedFinishDate.year <<"\nTitulo: "+this->title << "\nDescricao: "+this->description<< "\nMateria: "<<this->subject<<"\nEntregue: "<<this->submited<< "\nComentario: "<<this->comment<<"\n\n";
+        }
 
 
 
@@ -134,8 +147,15 @@ class Task{
 
 int main(){
 
+    struct deliveryDate date;
+    date.day = 12;
+    date.month = 9;
+    date.year = 2025;
   
-    Horario t1(120,13,13);
-    t1.showTimeMilitary();
+    Task *task1 = new Task(date,"title","description","subject",false,"comment",6.01);
+
+    task1->toString();
+
+
 
 }
