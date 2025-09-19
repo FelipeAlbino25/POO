@@ -149,5 +149,7 @@ int main(){
 
     t1->toString();
 
-    cout << t1->getSubject();
+    cout << t1->getSubject(); 
+
+    delete t1;
 }
