@@ -27,7 +27,7 @@ class Pedido{
         ~Pedido(){
             contadorPedidos= contadorPedidos -1;
             contadorItens=  contadorItens - quantidade;
-            delete [] pointer;
+            delete [] this->pointer;
         }
 
         static int totalPedidos(){
@@ -85,9 +85,9 @@ int main(){
     cout << "\n\n"<<Pedido::totalItens() << "\n\n";
         cout << "\n\n"<<Pedido::totalPedidos() << "\n\n";
 
+    string item;    
+    bool b = p1->getItem(1,item);
     
-
-
-
+    cout << "\n" << item;
     
 }
