@@ -6,6 +6,17 @@ exemplo: o caso abaixo f3 = f1 * f2;
 não se pode mudar como os operadores funcionam com os tipos pré-definidos
 não se pode criar novos operadores
 
+funções: membros x friends
+
+-membro (objeto é dono deste método):
+use 'this' para obter argumentos implicitamente
+obtem operando à esquerda para operador binário ( como * por exemplo)
+objeto mais a esquerda deve ser da mesma classe que o operador
+
+friend (função global):
+necessitam de parâmetros para AMBOS os operandos
+podem ter objeto de classe diferente da do operador
+tem que ser 'friend' para acessar dados private/protected
 */
 using namespace std;
 #include <iostream>
@@ -47,6 +58,20 @@ class Fracao{
             resultado.setNum(this->num * num);
             return resultado;
         }
+
+        //altera e manda
+        Fracao & operator++(){
+           setNum(this->getNum()+this->getDen());
+
+            return *this;
+        }
+        //manda e depois altera
+        Fracao operator++(int n){
+           Fracao f1(this->getNum(),this->getDen());
+
+            this->setNum(this->getNum()+ this->getDen());
+            return f1;
+        }
 };
 
 Fracao operator*(Fracao f1, Fracao f2){
@@ -76,5 +101,10 @@ int main(){
 
     f3 = f1* 6;
     f3.mostra();
+
+    f3 = f1++;
+    f3.mostra();
+
     return 0;
+
 }
