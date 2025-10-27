@@ -21,6 +21,13 @@ friend (função global):
 necessitam de parâmetros para AMBOS os operandos
 podem ter objeto de classe diferente da do operador
 tem que ser 'friend' para acessar dados private/protected
+
+uma referência constante, por exemplo:
+
+        friend ostream &operator<<(ostream &output, const Fracao &f);
+
+    const Fracao &f, serve para impedirmos que haja mudança em um objeto, mesmo que esteja sendo passado
+    o endereço de memória em que 
 */
 using namespace std;
 #include <iostream>
@@ -118,11 +125,20 @@ Fracao operator*(Fracao f1, int num){
     resultado.setNum(f1.getNum() * num);
     return resultado;
 }
+Fracao operator*(int num,Fracao f1){
+    Fracao resultado;
+    resultado.setDen(f1.getDen());
+    resultado.setNum(f1.getNum() * num);
+    return resultado;
+}
 
 int main(){
 
     Fracao *f1 = new Fracao(1,4);
     Fracao *f2 = new Fracao();
+
+    Fracao *f3 = new Fracao();
+    *f3 = 7 * (*f2);
 
     cout <<endl<< *f1 << endl;
 
