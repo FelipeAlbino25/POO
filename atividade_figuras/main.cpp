@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int LARGURA_TELA = 80;
+const int LARGURA_TELA = 160;
 
 void DisplayRefresh(const vector<Figura*>& figuras) {
     // Limpa tela e esconde cursor
@@ -52,7 +52,7 @@ int main() {
         }
 
         // Velocidade da animação
-        this_thread::sleep_for(chrono::milliseconds(30));
+        this_thread::sleep_for(chrono::milliseconds(15));
     }
 
     // Limpeza de memória
